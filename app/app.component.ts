@@ -1,10 +1,13 @@
 //File description: root component of what becomes more as the app evolves
 
 import { Component } from '@angular/core';
+
 export class Hero {
   id: number;
   name: string;
 }
+
+//CWF note: declare variable HEROES of type Hero, an array with the element objects defined inline
 const HEROES: Hero[] = [
   { id: 11, name: 'Mr. Nice' },
   { id: 12, name: 'Narco' },
@@ -17,6 +20,7 @@ const HEROES: Hero[] = [
   { id: 19, name: 'Magma' },
   { id: 20, name: 'Tornado' }
 ];
+
 @Component({
   selector: 'my-app',
   template: `
@@ -88,10 +92,11 @@ const HEROES: Hero[] = [
     }
   `]
 })
+
 export class AppComponent {
   title = 'Tour of Heroes';
-  heroes = HEROES;
-  selectedHero: Hero;
+  heroes = HEROES;      //declare property 'heroes' and assign it the value of the HEROES variable; TypeScript will infer from HEROES that the type of the new variable is an array of type 'Hero' (i.e., HEREOS: Hero[] = [ {..}, {..}, {..} ] -as declared at the top of this file)
+  selectedHero: Hero;   //declare property 'selectedHero' of type 'Hero'
   onSelect(hero: Hero): void {
     this.selectedHero = hero;
   }
