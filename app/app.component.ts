@@ -1,21 +1,10 @@
 //File description: root component of what becomes more as the app evolves
 
-import { Component } from '@angular/core';
-import { Hero } from './hero.js';
+import { Component, OnInit } from '@angular/core';
 
-//CWF note: declare variable HEROES of type Hero, an array with the element objects defined inline
-const HEROES: Hero[] = [
-  { id: 11, name: 'Mr. Nice' },
-  { id: 12, name: 'Narco' },
-  { id: 13, name: 'Bombasto' },
-  { id: 14, name: 'Celeritas' },
-  { id: 15, name: 'Magneta' },
-  { id: 16, name: 'RubberMan' },
-  { id: 17, name: 'Dynama' },
-  { id: 18, name: 'Dr IQ' },
-  { id: 19, name: 'Magma' },
-  { id: 20, name: 'Tornado' }
-];
+import { Hero }        from './hero.js';
+import { HeroService } from './hero.service';
+
 
 @Component({
   selector: 'my-app',
@@ -81,15 +70,29 @@ const HEROES: Hero[] = [
       margin-right: .8em;
       border-radius: 4px 0 0 4px;
     }
-  `]
+  `],
+
+  providers: [HeroService]
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Tour of Heroes';
-  heroes = HEROES;      //declare property 'heroes' and assign it the value of the HEROES variable; TypeScript will infer from HEROES that the type of the new variable is an array of type 'Hero' (i.e., HEREOS: Hero[] = [ {..}, {..}, {..} ] -as declared at the top of this file)
+  heroes:  Hero[];      //declare property 'heroes' and assign it the value of the HEROES variable; TypeScript will infer from HEROES that the type of the new variable is an array of type 'Hero' (i.e., HEREOS: Hero[] = [ {..}, {..}, {..} ] -as declared at the top of this file)
   selectedHero: Hero;   //declare property 'selectedHero' of type 'Hero'
+
+
+  getHeroes(): void {
+    this.heroService.getHeroes().then( heroes => this.heroes = heroes );
+  }
+
+
+  ngOnInit(): void {
+    this.getHeroes();
+  }
 
   onSelect(hero: Hero): void {
     this.selectedHero = hero;
   }
+
+  constructor(private heroService: HeroService) { }
 }
