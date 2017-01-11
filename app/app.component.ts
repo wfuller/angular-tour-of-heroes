@@ -1,11 +1,7 @@
 //File description: root component of what becomes more as the app evolves
 
 import { Component } from '@angular/core';
-
-export class Hero {
-  id: number;
-  name: string;
-}
+import { Hero } from './hero.js';
 
 //CWF note: declare variable HEROES of type Hero, an array with the element objects defined inline
 const HEROES: Hero[] = [
@@ -33,15 +29,10 @@ const HEROES: Hero[] = [
         <span class="badge">{{hero.id}}</span> {{hero.name}}
       </li>
     </ul>
-    <div *ngIf="selectedHero">
-      <h2>{{selectedHero.name}} details!</h2>
-      <div><label>id: </label>{{selectedHero.id}}</div>
-      <div>
-        <label>name: </label>
-        <input [(ngModel)]="selectedHero.name" placeholder="name"/>
-      </div>
-    </div>
+
+    <my-hero-detail [hero]="selectedHero"></my-hero-detail>
   `,
+
   styles: [`
     .selected {
       background-color: #CFD8DC !important;
@@ -97,6 +88,7 @@ export class AppComponent {
   title = 'Tour of Heroes';
   heroes = HEROES;      //declare property 'heroes' and assign it the value of the HEROES variable; TypeScript will infer from HEROES that the type of the new variable is an array of type 'Hero' (i.e., HEREOS: Hero[] = [ {..}, {..}, {..} ] -as declared at the top of this file)
   selectedHero: Hero;   //declare property 'selectedHero' of type 'Hero'
+
   onSelect(hero: Hero): void {
     this.selectedHero = hero;
   }
