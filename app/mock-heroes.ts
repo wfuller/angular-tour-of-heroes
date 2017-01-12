@@ -1,6 +1,8 @@
+//CWF Note: this file is not needed if you are using 'in-memory-data.service.ts', which is defined in Tour-of-Heros: Lesson 7, 'HTTP'
+
 import { Hero } from './hero';
 
-//CWF note: declare variable HEROES of type Hero, an array with the element objects defined inline
+//CWF Note: declare variable HEROES of type Hero, an array with the element objects defined inline
 export const HEROES: Hero[] = [
   { id: 11, name: 'Mr. Nice' },
   { id: 12, name: 'Narco' },

@@ -30,5 +30,5 @@ export class HeroDetailComponent {
         this.location.back();
     }
     
-    //@Input()    hero: Hero;
+    @Input()    hero: Hero;
 }
